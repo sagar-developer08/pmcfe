@@ -11,7 +11,7 @@ const Graph = () => {
 
     useEffect(() => {
         const fetchTenders = async () => {
-            const response = await axios.get('http://localhost:8000/api/gettender');
+            const response = await axios.get('https://api.vba.net.in/api/gettender');
        if(response.data.tenders.length > 0)
        {
         setTenders(response.data.tenders);
@@ -26,7 +26,7 @@ const Graph = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.post('http://localhost:8000/api/tender/graph', { id: selectedTenderId });
+            const response = await axios.post('https://api.vba.net.in/api/tender/graph', { id: selectedTenderId });
             const { totalDevelopers, developersWhoBid } = response.data.graphData;
             const developersWhoDidNotBid = totalDevelopers - developersWhoBid;
 

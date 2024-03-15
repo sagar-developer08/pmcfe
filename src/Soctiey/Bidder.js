@@ -149,7 +149,7 @@ export default function Bidder() {
     const [selectedTender, setSelectedTender] = useState('');
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/tenders/society', config)
+        axios.get('https://api.vba.net.in/api/tenders/society', config)
             .then(response => {
                 // console.log(response.data.data);
                 setTenders(response.data.data);
@@ -182,7 +182,7 @@ export default function Bidder() {
         if (selectedTender) {
             const body = { tenderId: selectedTender };
 
-            axios.post('http://localhost:8000/api/society-tenders', body, config)
+            axios.post('https://api.vba.net.in/api/society-tenders', body, config)
                 .then(response => {
                     console.log(response);
                     if (response.status === 400) {

@@ -24,7 +24,7 @@ function Tenderdetails() {
           name: params.id,
         }
         console.log(body, 'body')
-        const response = await axios.post(`http://localhost:8000/api/getdetails/tender`, body, {
+        const response = await axios.post(`https://api.vba.net.in/api/getdetails/tender`, body, {
           headers: {
             Authorization: `${localStorage.getItem("token")}`,
           },
@@ -51,17 +51,52 @@ function Tenderdetails() {
   const [tenderData, setTenderData] = useState(null);
   console.log(params.id, 'params')
 
+  // userid
+  const [userId, setUserId] = useState(null)
 
+  const [accountHolderName, setAccountHolderName] = useState('The Worli Ambedkar Nagar CHS');
+  const [accountNumber, setAccountNumber] = useState('0564000113295000');
+  const [ifscCode, setIfscCode] = useState('PUNB0056400');
+  const [bankName, setBankName] = useState('Punjab National Bank');
+  const [accountType, setAccountType] = useState('Saving');
+  const [branch, setBranch] = useState('Worli')
 
   const getData = async (id) => {
 
-    const data = await axios.get(`http://localhost:8000/api/get/tender/${params.id}`)
+    const data = await axios.get(`https://api.vba.net.in/api/get/tender/${params.id}`)
+
     setTenderData(data.data.tender)
-    console.log(data.data.tender.title, 'data')
+    console.log(data.data.tender.user, 'data')
+    setUserId(data.data.tender.user)
     setTender(data.data.tender.title);
   }
 
-  console.log(tenderData, 'tender')
+  useEffect(() => {
+    const fetchBankDetails = async () => {
+      const response = await axios.post('https://api.vba.net.in/api/getbank', { id: userId });
+      const bankDetails = response.data;
+      if (bankDetails.data && bankDetails.data.length > 0) {
+        const details = bankDetails.data[0];
+      // Set bank details to states
+      setAccountHolderName(details.account_holder_name);
+      setAccountNumber(details.account_number);
+      setIfscCode(details.bank_ifsc);
+      setBankName(details.bank_name);
+      setAccountType(details.account_type);
+      setBranch(details.bank_branch);
+      }
+        
+      // setBranch(bankDetails.branch);
+    };
+
+    if (userId) {
+      fetchBankDetails();
+    }
+  }, [userId]);
+
+
+
+  // console.log(tenderData, 'tender')
 
   // 
   const [showDetails, setShowDetails] = useState(false);
@@ -90,7 +125,7 @@ function Tenderdetails() {
     try {
       // const history = useHistory();
 
-      const response = await axios.post('http://localhost:8000/api/login', user);
+      const response = await axios.post('https://api.vba.net.in/api/login', user);
       // console.log(response, 'res');
       if (response.status === 200) {
         console.log(response.data)
@@ -147,7 +182,7 @@ function Tenderdetails() {
     //   //   // name:"",
     //   //   // usertender:
     //   // }
-    //     const response = await axios.post(`http://localhost:8000/api/`)
+    //     const response = await axios.post(`https://api.vba.net.in/api/`)
     // } catch (error) {
 
     // }
@@ -158,7 +193,7 @@ function Tenderdetails() {
 
     //   // Call the API
     //   try {
-    //     const response = await axios.get(`http://localhost:8000/api/details?userId=${userId}&tenderId=${tenderId}`);
+    //     const response = await axios.get(`https://api.vba.net.in/api/details?userId=${userId}&tenderId=${tenderId}`);
     //     console.log(response.data);
     //   } catch (error) {
     //     console.error(error);
@@ -175,7 +210,7 @@ function Tenderdetails() {
     const user = { name, email, password, role: "developer" };
 
     try {
-      const response = await axios.post('http://localhost:8000/api/register', user);
+      const response = await axios.post('https://api.vba.net.in/api/register', user);
       console.log(response, 'res');
       if (response.status === 200) {
         Swal.fire({
@@ -233,7 +268,7 @@ function Tenderdetails() {
         console.log(pair[0] + ', ' + pair[1]);
       }
       try {
-        const response = await axios.post('http://localhost:8000/api/tenderapply', formData, {
+        const response = await axios.post('https://api.vba.net.in/api/tenderapply', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -291,7 +326,7 @@ function Tenderdetails() {
         // add other data you want to send in the body
       };
 
-      axios.post(`http://localhost:8000/api/tender/user`, body, {
+      axios.post(`https://api.vba.net.in/api/tender/user`, body, {
         headers: {
           'Authorization': `${token}`
         }
@@ -350,7 +385,7 @@ function Tenderdetails() {
         <div className="col-lg-12 text-center">
           {/* <h3 className="breadcrumb-title">{tender && tender}</h3>
            */}
-           <p className="h1" style={{fontWeight:900,color:'white'}}>{tender && tender}</p>
+          <p className="h1" style={{ fontWeight: 900, color: 'white' }}>{tender && tender}</p>
           {/* <h3 className="breadcrumb-title fs-1 fs-md-2 fs-lg-3">{tender && tender}</h3> */}
           {/* <br /><br /> */}
           {/* <ul className="d-flex justify-content-center breadcrumb-items"> */}
@@ -552,12 +587,12 @@ function Tenderdetails() {
         </Modal.Header>
         <Modal.Body>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-          <p style={{ margin: '10px 0', fontWeight: 'bold' }}> Account Holder Name: The Worli Ambedkar Nagar CHS</p>
-            <p style={{ margin: '10px 0', fontWeight: 'bold' }}>Account Number: 0564000113295000</p>
-            <p style={{ margin: '10px 0', fontWeight: 'bold' }}>IFSC Code: PUNB0056400</p>
-            <p style={{ margin: '10px 0', fontWeight: 'bold' }}>Bank Name: Punjab National Bank,</p>
-            <p style={{ margin: '10px 0', fontWeight: 'bold' }}>Account Type: Saving</p>
-            <p style={{ margin: '10px 0', fontWeight: 'bold' }}>Branch: Worli</p>
+            <p style={{ margin: '10px 0', fontWeight: 'bold' }}> Account Holder Name: {accountHolderName}</p>
+            <p style={{ margin: '10px 0', fontWeight: 'bold' }}>Account Number: {accountNumber}</p>
+            <p style={{ margin: '10px 0', fontWeight: 'bold' }}>IFSC Code: {ifscCode}</p>
+            <p style={{ margin: '10px 0', fontWeight: 'bold' }}>Bank Name: {bankName}</p>
+            <p style={{ margin: '10px 0', fontWeight: 'bold' }}>Account Type: {accountType}</p>
+            <p style={{ margin: '10px 0', fontWeight: 'bold' }}>Branch: {branch}</p>
             <hr />
             <h4>Submit Transaction Details</h4>
             <input type="file" onChange={handleFileUpload} style={{ margin: '20px 0' }} />

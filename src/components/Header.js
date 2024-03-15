@@ -37,7 +37,7 @@ function Header() {
     try {
       // const history = useHistory();
 
-      const response = await axios.post('http://localhost:8000/api/login', user);
+      const response = await axios.post('https://api.vba.net.in/api/login', user);
       // console.log(response, 'res');
       if (response.status === 200) {
         console.log(response.data)
@@ -91,7 +91,7 @@ function Header() {
     const user = { name, email, password, role: "developer" };
 
     try {
-      const response = await axios.post('http://localhost:8000/api/register', user);
+      const response = await axios.post('https://api.vba.net.in/api/register', user);
       console.log(response, 'res');
       if (response.status === 200) {
         Swal.fire({
@@ -162,7 +162,7 @@ function Header() {
   const me = async () => {
     const token = localStorage.getItem('token');
     if (token) {
-      const response = await axios.get('http://localhost:8000/api/me', {
+      const response = await axios.get('https://api.vba.net.in/api/me', {
         headers: {
           Authorization: `${token}`
         }
@@ -184,7 +184,7 @@ function Header() {
   const handleSave = async () => {
     const token = localStorage.getItem('token');
     if (token) {
-      const response = await axios.put(`http://localhost:8000/api/admin/user/update/${user._id}`, {
+      const response = await axios.put(`https://api.vba.net.in/api/admin/user/update/${user._id}`, {
         phone: phoneNumber
       }, {
         headers: {

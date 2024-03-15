@@ -22,7 +22,7 @@ function TenderDetailuser() {
   const navigate = useNavigate()
   const data = async () => {
     try {
-      const res = await axios.post('http://localhost:8000/api/myaccount', {}, {
+      const res = await axios.post('https://api.vba.net.in/api/myaccount', {}, {
         headers: {
           Authorization: `${localStorage.getItem('token')}`
         }
@@ -96,7 +96,7 @@ function TenderDetailuser() {
     }
 
     try {
-      const res = await axios.post('http://localhost:8000/api/upload', formData, {
+      const res = await axios.post('https://api.vba.net.in/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `${localStorage.getItem('token')}`

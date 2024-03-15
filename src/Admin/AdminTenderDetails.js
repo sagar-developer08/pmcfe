@@ -165,7 +165,7 @@ function AdminTenderDetails() {
     useEffect(() => {
         const fetchUsers = async () => {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:8000/api/admin/users', {
+            const response = await axios.get('https://api.vba.net.in/api/admin/users', {
                 headers: {
                     'Authorization': `${token}`
                 }
@@ -190,7 +190,7 @@ function AdminTenderDetails() {
 
     const handleSelect = async (eventKey) => {
         setSelectedUser(eventKey);
-        const response = await axios.post('http://localhost:8000/api/tender/user/post', {
+        const response = await axios.post('https://api.vba.net.in/api/tender/user/post', {
             usertender: eventKey
         }, {
             headers: {
@@ -207,7 +207,7 @@ function AdminTenderDetails() {
     //     setTenderList(eventKey);
 
     //     // Fetch tenders for the selected user
-    //     const response = await axios.get('http://localhost:8000/api/gettender');
+    //     const response = await axios.get('https://api.vba.net.in/api/gettender');
     //     console.log(response)
     //     setTenderList(response.data); // Assuming the response is an array of tenders
     // }
@@ -217,7 +217,7 @@ function AdminTenderDetails() {
     const [selectedTender, setSelectedTender] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:8000/api/gettender')
+        fetch('https://api.vba.net.in/api/gettender')
             .then(response => response.json())
             .then(data => setTenders(data.tenders));
     }, []);
@@ -231,7 +231,7 @@ function AdminTenderDetails() {
         // console.log(tenderId)
         const tender = tenders.find(tender => tender._id === tenderId);
         setSelectedTender(tender);
-        axios.post('http://localhost:8000/api/tender/user/find', { name: tenderId }, {
+        axios.post('https://api.vba.net.in/api/tender/user/find', { name: tenderId }, {
             headers: { 'Authorization': ` ${token}` }
         })
             .then(response => {
@@ -266,7 +266,7 @@ function AdminTenderDetails() {
         setAllotmentStatus(newalloted);
         const isAlloted = newalloted === 'Yes' ? true : newalloted === 'No' ? false : 'inprogress';
         try {
-            const data = await axios.put(`http://localhost:8000/api/update/${userToUpdate._id}`, { alloted: isAlloted });
+            const data = await axios.put(`https://api.vba.net.in/api/update/${userToUpdate._id}`, { alloted: isAlloted });
             if (data.status === 200) {
                 Swal.fire('Success', ' Allotment update sucessfully', 'success');
 
@@ -276,7 +276,7 @@ function AdminTenderDetails() {
         }
         // if (event.target.value === 'Yes') {
         //     try {
-        //         const data = await axios.put(`http://localhost:8000/api/update/${userToUpdate._id}`, { alloted: event.target.value });
+        //         const data = await axios.put(`https://api.vba.net.in/api/update/${userToUpdate._id}`, { alloted: event.target.value });
         //         console.log(data);
         //     } catch (error) {
         //         console.error('Error:', error);
@@ -294,7 +294,7 @@ function AdminTenderDetails() {
         const isPaid = newStatus === 'Paid';
         console.log(userToUpdate, 'user')
         try {
-            const data = await axios.put(`http://localhost:8000/api/update/${userToUpdate._id}`, { paid: isPaid });
+            const data = await axios.put(`https://api.vba.net.in/api/update/${userToUpdate._id}`, { paid: isPaid });
             // console.log('updated', data.data.data)
             // setUserToUpdate(data.data.data)
             // setAllotmentStatus(data.data.data)

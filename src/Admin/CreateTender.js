@@ -191,7 +191,7 @@ function TenderForm() {
 
     };
     console.log(dataToPost, 'dataToPost');
-    axios.post('http://localhost:8000/api/create', dataToPost, {
+    axios.post('https://api.vba.net.in/api/create', dataToPost, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `${localStorage.getItem('token')}`
@@ -220,7 +220,7 @@ function TenderForm() {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
   const tenderData = async () => {
-    const res = await axios.get('http://localhost:8000/api/gettender');
+    const res = await axios.get('https://api.vba.net.in/api/gettender');
     console.log(res.data.tenders, 'res');
     setData(res.data.tenders);
     setCount(res.data.count);
@@ -253,7 +253,7 @@ function TenderForm() {
 
   useEffect(() => {
     tenderData()
-    axios.get('http://localhost:8000/api/get/documents', {
+    axios.get('https://api.vba.net.in/api/get/documents', {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`
       }
@@ -273,7 +273,7 @@ function TenderForm() {
   useEffect(() => {
     const fetchUsers = async () => {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8000/api/admin/users', {
+      const response = await axios.get('https://api.vba.net.in/api/admin/users', {
         headers: {
           'Authorization': `${token}`
         }
@@ -337,7 +337,7 @@ function TenderForm() {
     console.log(currentTender._id, 'currentTender.id')
     event.preventDefault();
     try {
-      const response = await fetch(`http://localhost:8000/api/update`, {
+      const response = await fetch(`https://api.vba.net.in/api/update`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

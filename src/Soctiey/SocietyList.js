@@ -150,7 +150,7 @@ export default function SocietyList() {
       'Authorization': `${token}` // Use the token here
     }
   };
-  const apiEndpoint = 'http://localhost:8000/api/tenders/society';
+  const apiEndpoint = 'https://api.vba.net.in/api/tenders/society';
 
   const tenderData = async () => {
     const res = await axios.get(apiEndpoint, config);
@@ -200,7 +200,7 @@ export default function SocietyList() {
   // const [rowsPerPage1, setRowsPerPage1] = useState(10);
 
   // useEffect(() => {
-  //   axios.get('http://localhost:8000/api/society-tenders',config)
+  //   axios.get('https://api.vba.net.in/api/society-tenders',config)
   //     .then(response => {
   //       console.log(response.data.data);
   //       setBid(response.data.data.map(item => item.name));

@@ -36,7 +36,7 @@ function Tender() {
     try {
       // const history = useHistory();
 
-      const response = await axios.post('http://localhost:8000/api/login', user);
+      const response = await axios.post('https://api.vba.net.in/api/login', user);
       console.log(response, 'res');
       if (response.status === 200) {
         console.log(response.data)
@@ -87,7 +87,7 @@ function Tender() {
 
     //   // Call the API
     //   try {
-    //     const response = await axios.get(`http://localhost:8000/api/details?userId=${userId}&tenderId=${tenderId}`);
+    //     const response = await axios.get(`https://api.vba.net.in/api/details?userId=${userId}&tenderId=${tenderId}`);
     //     console.log(response.data);
     //   } catch (error) {
     //     console.error(error);
@@ -109,7 +109,7 @@ function Tender() {
     const user = { name, email, password, role: "developer" };
 
     try {
-      const response = await axios.post('http://localhost:8000/api/register', user);
+      const response = await axios.post('https://api.vba.net.in/api/register', user);
       console.log(response, 'res');
       if (response.status === 200) {
         Swal.fire({
@@ -161,7 +161,7 @@ function Tender() {
         console.log(pair[0] + ', ' + pair[1]);
       }
       try {
-        const response = await axios.post('http://localhost:8000/api/tenderapply', formData, {
+        const response = await axios.post('https://api.vba.net.in/api/tenderapply', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -189,7 +189,7 @@ function Tender() {
   const [previousData, setPreviousData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/gettender')
+    axios.get('https://api.vba.net.in/api/gettender')
       .then(response => {
         const now = new Date();
         const activeTenders = response.data.tenders.filter(tender => new Date(tender.endDate) > now);
