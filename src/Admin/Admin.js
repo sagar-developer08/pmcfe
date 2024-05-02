@@ -188,7 +188,7 @@ export default function Dashboard() {
     const [data, setData] = useState([]);
     const [count, setCount] = useState(0);
     const tenderData = async () => {
-        const res = await axios.get('https://api.vba.net.in/api/gettender');
+        const res = await axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/gettender');
         console.log(res.data.count, 'res');
         setData(res.data.tenders);
         setCount(res.data.count);
@@ -213,7 +213,7 @@ export default function Dashboard() {
         formData.append('file', file);
 
         try {
-            const response = await axios.post('https://api.vba.net.in/api/upload/document', formData, {
+            const response = await axios.post('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/upload/document', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `${localStorage.getItem('token')}`,
@@ -238,7 +238,7 @@ export default function Dashboard() {
     const totalUser = async () => {
         const token = localStorage.getItem('token');
 
-        axios.get('https://api.vba.net.in/api/admin/users', {
+        axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/admin/users', {
             headers: {
                 Authorization: `${token}`
             }
@@ -267,7 +267,7 @@ export default function Dashboard() {
     const [pay, setPay] = useState([]);
 
     useEffect(() => {
-        axios.get('https://api.vba.net.in/api/admin/getdetails/tender')
+        axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/admin/getdetails/tender')
             .then(response => {
                 setPay(response.data.data.slice(-2));
             })

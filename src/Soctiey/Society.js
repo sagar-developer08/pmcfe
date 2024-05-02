@@ -164,7 +164,7 @@ function Society() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://api.vba.net.in/api/register', formData);
+      await axios.post('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/register', formData);
       // Handle success, maybe redirect user or show a success message
       console.log('Registration successful');
     } catch (error) {
@@ -177,7 +177,7 @@ function Society() {
 useEffect(() => {
   const fetchUsers = async () => {
     const token = localStorage.getItem('token');
-    const response = await axios.get('https://api.vba.net.in/api/admin/users', {
+    const response = await axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/admin/users', {
       headers: {
         'Authorization': `${token}`
       }

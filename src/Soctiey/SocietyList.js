@@ -150,7 +150,7 @@ export default function SocietyList() {
       'Authorization': `${token}` // Use the token here
     }
   };
-  const apiEndpoint = 'https://api.vba.net.in/api/tenders/society';
+  const apiEndpoint = 'https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/tenders/society';
 
   const tenderData = async () => {
     const res = await axios.get(apiEndpoint, config);
@@ -200,7 +200,7 @@ export default function SocietyList() {
   // const [rowsPerPage1, setRowsPerPage1] = useState(10);
 
   // useEffect(() => {
-  //   axios.get('https://api.vba.net.in/api/society-tenders',config)
+  //   axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/society-tenders',config)
   //     .then(response => {
   //       console.log(response.data.data);
   //       setBid(response.data.data.map(item => item.name));

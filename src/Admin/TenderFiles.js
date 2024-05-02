@@ -156,7 +156,7 @@ function TenderFiles() {
     useEffect(() => {
         const fetchFolders = async () => {
             try {
-                const response = await axios.get('https://api.vba.net.in/api/folders', {
+                const response = await axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/folders', {
                     headers: {
                         Authorization: `${localStorage.getItem('token')}`,
                     },
@@ -195,7 +195,7 @@ function TenderFiles() {
         formData.append('file', file);
 
         try {
-            const response = await axios.post('https://api.vba.net.in/api/upload/document', formData, {
+            const response = await axios.post('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/upload/document', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `${localStorage.getItem('token')}`,
@@ -221,7 +221,7 @@ function TenderFiles() {
     // 
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
     useEffect(() => {
-        axios.get('https://api.vba.net.in/api/get/documents', {
+        axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/get/documents', {
             headers: {
                 'Authorization': `${localStorage.getItem('token')}`
             }

@@ -160,7 +160,7 @@ function AdminUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://api.vba.net.in/api/admin/users', {
+      const response = await axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/admin/users', {
         headers: {
           'Authorization': `${token}`
         }

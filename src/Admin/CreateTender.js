@@ -191,7 +191,7 @@ function TenderForm() {
 
     };
     console.log(dataToPost, 'dataToPost');
-    axios.post('https://api.vba.net.in/api/create', dataToPost, {
+    axios.post('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/create', dataToPost, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `${localStorage.getItem('token')}`
@@ -220,7 +220,7 @@ function TenderForm() {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
   const tenderData = async () => {
-    const res = await axios.get('https://api.vba.net.in/api/gettender');
+    const res = await axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/gettender');
     console.log(res.data.tenders, 'res');
     setData(res.data.tenders);
     setCount(res.data.count);
@@ -253,7 +253,7 @@ function TenderForm() {
 
   useEffect(() => {
     tenderData()
-    axios.get('https://api.vba.net.in/api/get/documents', {
+    axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/get/documents', {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`
       }
@@ -273,7 +273,7 @@ function TenderForm() {
   useEffect(() => {
     const fetchUsers = async () => {
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://api.vba.net.in/api/admin/users', {
+      const response = await axios.get('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/admin/users', {
         headers: {
           'Authorization': `${token}`
         }
@@ -337,7 +337,7 @@ function TenderForm() {
     console.log(currentTender._id, 'currentTender.id')
     event.preventDefault();
     try {
-      const response = await fetch(`https://api.vba.net.in/api/update`, {
+      const response = await fetch(`https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/update`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

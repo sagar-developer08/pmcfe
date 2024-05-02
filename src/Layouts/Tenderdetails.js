@@ -24,7 +24,7 @@ function Tenderdetails() {
           name: params.id,
         }
         console.log(body, 'body')
-        const response = await axios.post(`https://api.vba.net.in/api/getdetails/tender`, body, {
+        const response = await axios.post(`https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/getdetails/tender`, body, {
           headers: {
             Authorization: `${localStorage.getItem("token")}`,
           },
@@ -63,7 +63,7 @@ function Tenderdetails() {
 
   const getData = async (id) => {
 
-    const data = await axios.get(`https://api.vba.net.in/api/get/tender/${params.id}`)
+    const data = await axios.get(`https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/get/tender/${params.id}`)
 
     setTenderData(data.data.tender)
     console.log(data.data.tender.user, 'data')
@@ -73,7 +73,7 @@ function Tenderdetails() {
 
   useEffect(() => {
     const fetchBankDetails = async () => {
-      const response = await axios.post('https://api.vba.net.in/api/getbank', { id: userId });
+      const response = await axios.post('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/getbank', { id: userId });
       const bankDetails = response.data;
       if (bankDetails.data && bankDetails.data.length > 0) {
         const details = bankDetails.data[0];
@@ -125,7 +125,7 @@ function Tenderdetails() {
     try {
       // const history = useHistory();
 
-      const response = await axios.post('https://api.vba.net.in/api/login', user);
+      const response = await axios.post('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/login', user);
       // console.log(response, 'res');
       if (response.status === 200) {
         console.log(response.data)
@@ -182,7 +182,7 @@ function Tenderdetails() {
     //   //   // name:"",
     //   //   // usertender:
     //   // }
-    //     const response = await axios.post(`https://api.vba.net.in/api/`)
+    //     const response = await axios.post(`https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/`)
     // } catch (error) {
 
     // }
@@ -193,7 +193,7 @@ function Tenderdetails() {
 
     //   // Call the API
     //   try {
-    //     const response = await axios.get(`https://api.vba.net.in/api/details?userId=${userId}&tenderId=${tenderId}`);
+    //     const response = await axios.get(`https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/details?userId=${userId}&tenderId=${tenderId}`);
     //     console.log(response.data);
     //   } catch (error) {
     //     console.error(error);
@@ -210,7 +210,7 @@ function Tenderdetails() {
     const user = { name, email, password, role: "developer" };
 
     try {
-      const response = await axios.post('https://api.vba.net.in/api/register', user);
+      const response = await axios.post('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/register', user);
       console.log(response, 'res');
       if (response.status === 200) {
         Swal.fire({
@@ -268,7 +268,7 @@ function Tenderdetails() {
         console.log(pair[0] + ', ' + pair[1]);
       }
       try {
-        const response = await axios.post('https://api.vba.net.in/api/tenderapply', formData, {
+        const response = await axios.post('https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/tenderapply', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -326,7 +326,7 @@ function Tenderdetails() {
         // add other data you want to send in the body
       };
 
-      axios.post(`https://api.vba.net.in/api/tender/user`, body, {
+      axios.post(`https://sgqfr6s6f8.execute-api.ap-south-1.amazonaws.com/production/api/tender/user`, body, {
         headers: {
           'Authorization': `${token}`
         }
